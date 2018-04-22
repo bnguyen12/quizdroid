@@ -18,7 +18,7 @@ class topicOverview : AppCompatActivity() {
         val button = findViewById<Button>(R.id.beginButton)
 
         val subject = intent.getStringExtra("subject")
-        val numOfQuestions = 3 //get from intent later
+        val numOfQuestions = 4 //get from intent later
         val details = "Description placeholder that will be initialized later!"
         val numQuestionsText = "This topic contains $numOfQuestions questions"
 
@@ -29,6 +29,7 @@ class topicOverview : AppCompatActivity() {
             val intent = Intent(this, questionPage::class.java)
             intent.putExtra("subject", subject)
             intent.putExtra("questionNum", 1)
+            intent.putExtra("totalQuestions", numOfQuestions)
             startActivity(intent)
         }
     }

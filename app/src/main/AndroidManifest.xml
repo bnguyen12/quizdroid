@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".topicOverview" />
-        <activity android:name=".questionPage"></activity>
+        <activity android:name=".questionPage" />
+        <activity android:name=".answerPage"></activity>
     </application>
 
 </manifest>

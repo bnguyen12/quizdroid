@@ -12,6 +12,9 @@ import android.widget.TextView
 
 class questionPage : AppCompatActivity() {
     private lateinit var currAns: String
+    private var questionNum = 1
+    private var totalQuestions = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_page)
@@ -19,10 +22,10 @@ class questionPage : AppCompatActivity() {
         val questionView = findViewById<TextView>(R.id.question)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         val submitBtn = findViewById<Button>(R.id.submitButton)
-        val totalQuestions = intent.getIntExtra("totalQuestions", 1)
-        val questionNum = intent.getIntExtra("questionNum", 1)
-        val answer = 1 //placeholder for now
 
+        totalQuestions = intent.getIntExtra("totalQuestions", 1)
+        questionNum = intent.getIntExtra("questionNum", 1)
+        val answer = 1 //placeholder for now
         //val subject = ... //set later with intent
         val answers = arrayOf("1", "2", "3", "4") //set later with intent
         val radioButtons = radioGroup.touchables
@@ -35,6 +38,7 @@ class questionPage : AppCompatActivity() {
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             //Log.e("clickedButton", findViewById<RadioButton>(checkedId).text.toString())
+            //currAns = ... //set with intent later
             submitBtn.visibility = (View.VISIBLE)
         }
 
@@ -43,6 +47,19 @@ class questionPage : AppCompatActivity() {
             intent.putExtra("totalQuestions", totalQuestions)
             intent.putExtra("questionNum", questionNum)
             intent.putExtra("answer", 1)
+            startActivity(intent)
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (questionNum == 1) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        } else {
+            val intent = Intent(this, questionPage::class.java)
+            intent.putExtra("questionNum", questionNum - 1)
+            intent.putExtra("totalQuestions", totalQuestions)
             startActivity(intent)
         }
     }

@@ -11,7 +11,6 @@ import android.widget.RadioGroup
 import android.widget.TextView
 
 class questionPage : AppCompatActivity() {
-    private lateinit var currAns: String
     private var questionNum = 1
     private var totalQuestions = 1
 
@@ -25,7 +24,7 @@ class questionPage : AppCompatActivity() {
 
         totalQuestions = intent.getIntExtra("totalQuestions", 1)
         questionNum = intent.getIntExtra("questionNum", 1)
-        val answer = 1 //placeholder for now
+        var myAnswer = 1 //placeholder for now
         //val subject = ... //set later with intent
         val answers = arrayOf("1", "2", "3", "4") //set later with intent
         val radioButtons = radioGroup.touchables
@@ -38,7 +37,7 @@ class questionPage : AppCompatActivity() {
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             //Log.e("clickedButton", findViewById<RadioButton>(checkedId).text.toString())
-            //currAns = ... //set with intent later
+            myAnswer = findViewById<RadioButton>(checkedId).text.toString().toInt()
             submitBtn.visibility = (View.VISIBLE)
         }
 
@@ -46,7 +45,7 @@ class questionPage : AppCompatActivity() {
             val intent = Intent(this, answerPage::class.java)
             intent.putExtra("totalQuestions", totalQuestions)
             intent.putExtra("questionNum", questionNum)
-            intent.putExtra("answer", 1)
+            intent.putExtra("myAnswer", myAnswer)
             startActivity(intent)
         }
     }

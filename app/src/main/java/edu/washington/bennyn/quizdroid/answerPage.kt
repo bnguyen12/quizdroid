@@ -12,17 +12,17 @@ class answerPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer_page)
 
-        val myAns = findViewById<TextView>(R.id.myAns)
-        val actualAns = findViewById<TextView>(R.id.actualAns)
+        val myAnsBox = findViewById<TextView>(R.id.myAns)
+        val actualAnsBox = findViewById<TextView>(R.id.actualAns)
         val score = findViewById<TextView>(R.id.score)
         val btn = findViewById<Button>(R.id.nextOrFinalBtn)
 
         val totalQuestions = intent.getIntExtra("totalQuestions", 1)
         val questionNum = intent.getIntExtra("questionNum", 1)
-        val answer = intent.getIntExtra("answer", 1)
+        val myAnswer = intent.getIntExtra("myAnswer", 1)
 
-        myAns.text = answer.toString()
-        actualAns.text = 1.toString() //set to an actual answer later
+        myAnsBox.text = myAnswer.toString()
+        actualAnsBox.text = 1.toString() //set to an actual answer later
 
         val scoreText = "You have $questionNum out of $totalQuestions correct!" //turn questionNum into the correct # of answers lately
         score.text = scoreText

@@ -1,25 +1,33 @@
 package edu.washington.bennyn.quizdroid
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 
-class answerPage : AppCompatActivity() {
+class answerPage : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_answer_page)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        container!!.removeAllViews()
+        return inflater.inflate(R.layout.activity_answer_page, container, false)
+    }
 
-        val myAnsBox = findViewById<TextView>(R.id.myAns)
-        val actualAnsBox = findViewById<TextView>(R.id.actualAns)
-        val score = findViewById<TextView>(R.id.score)
-        val btn = findViewById<Button>(R.id.nextOrFinalBtn)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val totalQuestions = intent.getIntExtra("totalQuestions", 1)
-        val questionNum = intent.getIntExtra("questionNum", 1)
-        val myAnswer = intent.getIntExtra("myAnswer", 1)
+        val myAnsBox = getView()!!.findViewById<TextView>(R.id.myAns)
+        val actualAnsBox = getView()!!.findViewById<TextView>(R.id.actualAns)
+        val score = getView()!!.findViewById<TextView>(R.id.score)
+        val btn = getView()!!.findViewById<Button>(R.id.nextOrFinalBtn)
+
+        val totalQuestions = arguments!!.getInt("totalQuestions")
+        val questionNum = arguments!!.getInt("questionNum")
+        val myAnswer = arguments!!.getInt("myAnswer")
 
         myAnsBox.text = myAnswer.toString()
         actualAnsBox.text = 1.toString() //set to an actual answer later
@@ -33,13 +41,21 @@ class answerPage : AppCompatActivity() {
 
         btn.setOnClickListener {
             if (btn.text == "Finish") {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                val intent = Intent(this, questionPage::class.java)
-                intent.putExtra("totalQuestions", totalQuestions)
-                intent.putExtra("questionNum", questionNum + 1)
-                startActivity(intent)
+                val fragment = questionPage()
+
+                val bundle = Bundle()
+                bundle.putInt("totalQuestions", totalQuestions)
+                bundle.putInt("questionNum", questionNum + 1)
+
+                fragment.arguments = bundle
+
+                val transaction = fragmentManager!!.beginTransaction()
+                transaction.replace(R.id.fragmentLayout, fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         }
     }

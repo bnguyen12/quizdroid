@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".topicOverview" />
         <activity android:name=".questionPage" />
-        <activity android:name=".answerPage"></activity>
+        <activity android:name=".answerPage" />
+        <activity android:name=".quiz"></activity>
     </application>
 
 </manifest>

@@ -3,7 +3,7 @@ package edu.washington.bennyn.quizdroid
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class quiz : AppCompatActivity() {
+class Quiz : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -11,7 +11,7 @@ class quiz : AppCompatActivity() {
 
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()
-        val fragment = topicOverview()
+        val fragment = TopicOverview()
         val bundle = Bundle()
 
         val subject = intent.getStringExtra("subject")

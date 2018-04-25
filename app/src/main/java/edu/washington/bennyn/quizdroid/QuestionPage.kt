@@ -9,7 +9,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 
-class questionPage : android.support.v4.app.Fragment() {
+class QuestionPage : android.support.v4.app.Fragment() {
     private var questionNum = 1
     private var totalQuestions = 1
 
@@ -20,7 +20,7 @@ class questionPage : android.support.v4.app.Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val questionView = getView()!!.findViewById<TextView>(R.id.question)
+        val questionView = getView()!!.findViewById<TextView>(R.id.question) //add in text for question later
         val radioGroup = getView()!!.findViewById<RadioGroup>(R.id.radioGroup)
         val submitBtn = getView()!!.findViewById<Button>(R.id.submitButton)
 
@@ -43,7 +43,7 @@ class questionPage : android.support.v4.app.Fragment() {
             }
 
             submitBtn.setOnClickListener {
-                val fragment = answerPage()
+                val fragment = AnswerPage()
 
                 val bundle = Bundle()
                 bundle.putInt("totalQuestions", totalQuestions)

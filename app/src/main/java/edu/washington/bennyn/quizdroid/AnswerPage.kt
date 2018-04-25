@@ -3,14 +3,13 @@ package edu.washington.bennyn.quizdroid
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 
-class answerPage : Fragment() {
+class AnswerPage : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         container!!.removeAllViews()
@@ -44,7 +43,7 @@ class answerPage : Fragment() {
                 val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                val fragment = questionPage()
+                val fragment = QuestionPage()
 
                 val bundle = Bundle()
                 bundle.putInt("totalQuestions", totalQuestions)

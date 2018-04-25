@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, subjects)
         listView.adapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(this, quiz::class.java)
+            val intent = Intent(this, Quiz::class.java)
             intent.putExtra("subject", subjects[position])
             startActivity(intent)
         }

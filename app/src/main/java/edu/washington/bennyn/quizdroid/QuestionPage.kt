@@ -24,38 +24,38 @@ class QuestionPage : android.support.v4.app.Fragment() {
         val radioGroup = getView()!!.findViewById<RadioGroup>(R.id.radioGroup)
         val submitBtn = getView()!!.findViewById<Button>(R.id.submitButton)
 
-            totalQuestions = arguments!!.getInt("totalQuestions")
-            questionNum = arguments!!.getInt("questionNum")
-            var myAnswer = 1 //placeholder for now
-            //val subject = ... //set later with intent
-            val answers = arrayOf("1", "2", "3", "4") //set later with intent
-            val radioButtons = radioGroup.touchables
+        totalQuestions = arguments!!.getInt("totalQuestions")
+        questionNum = arguments!!.getInt("questionNum")
+        var myAnswer = 1 //placeholder for now
+        //val subject = ... //set later with intent
+        val answers = arrayOf("1", "2", "3", "4") //set later with intent
+        val radioButtons = radioGroup.touchables
 
-            //Set answers on radio buttons
-            for (i in 0..3) {
-                val radioButton = radioButtons[i] as RadioButton
-                radioButton.text = answers[i]
-            }
+        //Set answers on radio buttons
+        for (i in 0..3) {
+            val radioButton = radioButtons[i] as RadioButton
+            radioButton.text = answers[i]
+        }
 
-            radioGroup.setOnCheckedChangeListener { group, checkedId ->
-                myAnswer = getView()!!.findViewById<RadioButton>(checkedId).text.toString().toInt()
-                submitBtn.visibility = (View.VISIBLE)
-            }
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            myAnswer = getView()!!.findViewById<RadioButton>(checkedId).text.toString().toInt()
+            submitBtn.visibility = (View.VISIBLE)
+        }
 
-            submitBtn.setOnClickListener {
-                val fragment = AnswerPage()
+        submitBtn.setOnClickListener {
+            val fragment = AnswerPage()
 
-                val bundle = Bundle()
-                bundle.putInt("totalQuestions", totalQuestions)
-                bundle.putInt("questionNum", questionNum)
-                bundle.putInt("myAnswer", myAnswer)
+            val bundle = Bundle()
+            bundle.putInt("totalQuestions", totalQuestions)
+            bundle.putInt("questionNum", questionNum)
+            bundle.putInt("myAnswer", myAnswer)
 
-                fragment.arguments = bundle
+            fragment.arguments = bundle
 
-                val transaction = fragmentManager!!.beginTransaction()
-                transaction.replace(R.id.fragmentLayout, fragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
-            }
+            val transaction = fragmentManager!!.beginTransaction()
+            transaction.replace(R.id.fragmentLayout, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 }

@@ -41,6 +41,7 @@ class TopicOverview : android.support.v4.app.Fragment() {
             fragment.arguments = bundle
 
             val transaction = fragmentManager!!.beginTransaction()
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             transaction.replace(R.id.fragmentLayout, fragment)
             transaction.addToBackStack(null)
             transaction.commit()

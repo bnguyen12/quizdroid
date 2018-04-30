@@ -17,9 +17,9 @@ class TopicOverview : android.support.v4.app.Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val subjectName = getView()!!.findViewById<TextView>(R.id.subjectName)
-        val numQuestions = getView()!!.findViewById<TextView>(R.id.numQuestions)
-        val description = getView()!!.findViewById<TextView>(R.id.description)
+        val subjectBox = getView()!!.findViewById<TextView>(R.id.subjectName)
+        val numQuestionsBox = getView()!!.findViewById<TextView>(R.id.numQuestions)
+        val descriptionBox = getView()!!.findViewById<TextView>(R.id.description)
         val button = getView()!!.findViewById<Button>(R.id.beginButton)
 
         val subject = arguments!!.getString("subject")
@@ -27,9 +27,9 @@ class TopicOverview : android.support.v4.app.Fragment() {
         val details = "Description placeholder that will be initialized later!"
         val numQuestionsText = "This topic contains $numOfQuestions questions"
 
-        subjectName.text = subject
-        description.text = details
-        numQuestions.text = numQuestionsText
+        subjectBox.text = subject
+        descriptionBox.text = details
+        numQuestionsBox.text = numQuestionsText
         button.setOnClickListener {
             val fragment = QuestionPage()
 

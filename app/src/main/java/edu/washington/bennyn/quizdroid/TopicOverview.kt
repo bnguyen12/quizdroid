@@ -22,21 +22,20 @@ class TopicOverview : android.support.v4.app.Fragment() {
         val descriptionBox = getView()!!.findViewById<TextView>(R.id.description)
         val button = getView()!!.findViewById<Button>(R.id.beginButton)
 
-        val subject = arguments!!.getString("subject")
-        val numOfQuestions = 4 //set from JSON data later
-        val details = "Description placeholder that will be initialized later!"
-        val numQuestionsText = "This topic contains $numOfQuestions questions"
+        val subject = arguments!!.getInt("subject")
+        val totalQuestions = QuizApp.offlineRepository.getTopic(subject).questions.size
+        val numQuestionsText = "This topic contains $totalQuestions questions"
 
-        subjectBox.text = subject
-        descriptionBox.text = details
+        subjectBox.text = QuizApp.offlineRepository.getTopic(subject).title
+        descriptionBox.text = QuizApp.offlineRepository.getTopic(subject).longDesc
         numQuestionsBox.text = numQuestionsText
         button.setOnClickListener {
             val fragment = QuestionPage()
 
             val bundle = Bundle()
-            bundle.putString("subject", subject)
-            bundle.putInt("questionNum", 1)
-            bundle.putInt("totalQuestions", numOfQuestions)
+            bundle.putInt("subject", subject)
+            bundle.putInt("questionNum", 0)
+            bundle.putInt("totalQuestions", totalQuestions)
 
             fragment.arguments = bundle
 

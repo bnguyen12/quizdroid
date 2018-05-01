@@ -24,17 +24,18 @@ class AnswerPage : Fragment() {
         val score = getView()!!.findViewById<TextView>(R.id.score)
         val btn = getView()!!.findViewById<Button>(R.id.nextOrFinalBtn)
 
+        val subject = arguments!!.getInt("subject")
         val totalQuestions = arguments!!.getInt("totalQuestions")
         val questionNum = arguments!!.getInt("questionNum")
         val myAnswer = arguments!!.getInt("myAnswer")
 
         myAnsBox.text = myAnswer.toString()
-        actualAnsBox.text = 1.toString() //set to an actual answer later
+        actualAnsBox.text = QuizApp.offlineRepository.getTopic(subject).questions[questionNum].answer.toString()
 
-        val scoreText = "You have $questionNum out of $totalQuestions correct!" //turn questionNum into the correct # of answers lately
+        val scoreText = "You have ${questionNum + 1} out of $totalQuestions correct!" //turn questionNum into the correct # of answers lately
         score.text = scoreText
 
-        if (totalQuestions == questionNum) {
+        if (totalQuestions == questionNum + 1) {
             btn.text = "Finish"
         }
 

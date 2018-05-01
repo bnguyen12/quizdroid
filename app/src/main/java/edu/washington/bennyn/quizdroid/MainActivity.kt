@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         listView = findViewById(R.id.listView)
-        val subjects = arrayOf("Math", "Physics", "Lego Marvel Superheroes")
+        val subjects = QuizApp.subjectNames
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, subjects)
         listView.adapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(this, Quiz::class.java)
-            intent.putExtra("subject", subjects[position])
+            intent.putExtra("subject", position)
             startActivity(intent)
         }
     }

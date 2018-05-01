@@ -6,7 +6,8 @@ class QuizApp : android.app.Application() {
 
     //Makes this into a singleton
     companion object Repository {
-        val offlineRepository = offlineRepository()
+        val offlineRepository = OfflineRepository()
+        val subjectNames = arrayOf("Math", "Physics", "Marvel Superheroes")
     }
 
     override fun onCreate() {

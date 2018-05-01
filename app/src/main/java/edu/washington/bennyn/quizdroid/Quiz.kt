@@ -14,8 +14,8 @@ class Quiz : AppCompatActivity() {
         val fragment = TopicOverview()
         val bundle = Bundle()
 
-        val subject = intent.getStringExtra("subject")
-        bundle.putString("subject", subject)
+        val subject = intent.getIntExtra("subject", 1)
+        bundle.putInt("subject", subject)
         fragment.arguments = bundle
 
         transaction.replace(R.id.fragmentLayout, fragment)

@@ -22,6 +22,7 @@ class QuestionPage : android.support.v4.app.Fragment() {
         val radioGroup = getView()!!.findViewById<RadioGroup>(R.id.radioGroup)
         val submitBtn = getView()!!.findViewById<Button>(R.id.submitButton)
 
+        val score = arguments!!.getInt("score")
         val totalQuestions = arguments!!.getInt("totalQuestions")
         val questionNum = arguments!!.getInt("questionNum")
         val subject = arguments!!.getInt("subject")
@@ -47,6 +48,7 @@ class QuestionPage : android.support.v4.app.Fragment() {
             val fragment = AnswerPage()
 
             val bundle = Bundle()
+            bundle.putInt("score", score)
             bundle.putInt("subject", subject)
             bundle.putInt("totalQuestions", totalQuestions)
             bundle.putInt("questionNum", questionNum)

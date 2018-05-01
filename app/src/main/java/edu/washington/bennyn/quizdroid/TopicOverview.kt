@@ -36,6 +36,7 @@ class TopicOverview : android.support.v4.app.Fragment() {
             bundle.putInt("subject", subject)
             bundle.putInt("questionNum", 0)
             bundle.putInt("totalQuestions", totalQuestions)
+            bundle.putInt("score", 0)
 
             fragment.arguments = bundle
 

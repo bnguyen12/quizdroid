@@ -7,7 +7,7 @@ class OfflineRepository: TopicRepository {
     //Returns an array of topic objects for Math, Physics, and Marvel Superheroes
     private fun makeObjects(): Array<TopicObj> {
         val topicList = mutableListOf<TopicObj>()
-        val subjects = arrayOf("Math", "Physics", "Lego Marvel Superheroes")
+        val subjects = arrayOf("Math", "Physics", "Marvel Superheroes")
         for (i in 0..2) {
             val questionList = mutableListOf<QuizObj>()
             for (i in 0..3) {

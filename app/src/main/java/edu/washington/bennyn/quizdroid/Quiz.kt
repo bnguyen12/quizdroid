@@ -17,7 +17,6 @@ class Quiz : AppCompatActivity() {
         val subject = intent.getIntExtra("subject", 1)
         bundle.putInt("subject", subject)
         fragment.arguments = bundle
-
         transaction.replace(R.id.fragmentLayout, fragment)
         transaction.addToBackStack(null)
         transaction.commit()

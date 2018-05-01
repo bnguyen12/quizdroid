@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_answer_page.*
 
 class AnswerPage : Fragment() {
 
@@ -51,7 +50,6 @@ class AnswerPage : Fragment() {
                 startActivity(intent)
             } else {
                 val fragment = QuestionPage()
-
                 val bundle = Bundle()
                 bundle.putInt("score", score)
                 bundle.putInt("totalQuestions", totalQuestions)

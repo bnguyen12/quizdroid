@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Preferences"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
@@ -16,17 +16,48 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         />
-    <EditText
-        android:id="@+id/editText"
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <EditText
+            android:id="@+id/urlInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:hint="URL:"
+            android:inputType="text"
+            tools:layout_editor_absoluteY="90dp"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/urlSubmitButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"/>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How often do you want to check for downloads? (Minutes)"
+        android:textAlignment="center"
+        android:layout_marginBottom="5dp"/>
+    <NumberPicker
+        android:id="@+id/numberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="URL:"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="90dp" />
-
+        />
 </LinearLayout>

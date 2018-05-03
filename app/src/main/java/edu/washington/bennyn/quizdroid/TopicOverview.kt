@@ -23,11 +23,11 @@ class TopicOverview : android.support.v4.app.Fragment() {
         val button = getView()!!.findViewById<Button>(R.id.beginButton)
 
         val subject = arguments!!.getInt("subject")
-        val totalQuestions = QuizApp.offlineRepository.getTopic(subject).questions.size
+        val totalQuestions = QuizApp.repository.getTopic(subject).questions.size
         val numQuestionsText = "This topic contains $totalQuestions questions"
 
-        subjectBox.text = QuizApp.offlineRepository.getTopic(subject).title
-        descriptionBox.text = QuizApp.offlineRepository.getTopic(subject).longDesc
+        subjectBox.text = QuizApp.repository.getTopic(subject).title
+        descriptionBox.text = QuizApp.repository.getTopic(subject).longDesc
         numQuestionsBox.text = numQuestionsText
         button.setOnClickListener {
             val fragment = QuestionPage()

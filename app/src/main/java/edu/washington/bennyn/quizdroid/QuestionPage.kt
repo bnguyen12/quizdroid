@@ -28,19 +28,20 @@ class QuestionPage : android.support.v4.app.Fragment() {
         val subject = arguments!!.getInt("subject")
 
         var myAnswer = 1 //placeholder
-        val answers = QuizApp.offlineRepository.getTopic(subject).questions[questionNum].answers
+        val answers = QuizApp.repository.getTopic(subject).questions[questionNum].answers
         val radioButtons = radioGroup.touchables
 
-        questionView.text = QuizApp.offlineRepository.getTopic(subject).questions[questionNum].question
+        questionView.text = QuizApp.repository.getTopic(subject).questions[questionNum].question
 
         //Set answers on radio buttons
         for (i in 0..3) {
             val radioButton = radioButtons[i] as RadioButton
             radioButton.text = answers[i]
+            radioButton.tag = i
         }
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            myAnswer = getView()!!.findViewById<RadioButton>(checkedId).text.toString().toInt()
+            myAnswer = getView()!!.findViewById<RadioButton>(checkedId).tag as Int
             submitBtn.visibility = (View.VISIBLE)
         }
 

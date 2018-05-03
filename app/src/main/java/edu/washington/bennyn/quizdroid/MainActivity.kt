@@ -4,12 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.File
+import java.io.FileInputStream
+import java.lang.reflect.Array
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listView: ListView
@@ -55,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             topicRow.text = QuizApp.subjectNames[position]
 
             val descriptionRow = row.findViewById<TextView>(R.id.descriptionRow)
-            descriptionRow.text = QuizApp.offlineRepository.getTopic(position).shortDesc
+            descriptionRow.text = QuizApp.repository.getTopic(position).shortDesc
 
             return row
         }

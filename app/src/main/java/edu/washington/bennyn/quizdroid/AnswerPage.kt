@@ -29,11 +29,12 @@ class AnswerPage : Fragment() {
         val totalQuestions = arguments!!.getInt("totalQuestions")
         val questionNum = arguments!!.getInt("questionNum")
         val myAnswer = arguments!!.getInt("myAnswer")
+        val actualAnswer = QuizApp.repository.getTopic(subject).questions[questionNum].answer
 
-        myAnsBox.text = myAnswer.toString() //this is a number, so later set it to an actual answer from the question objects
-        actualAnsBox.text = QuizApp.offlineRepository.getTopic(subject).questions[questionNum].answer.toString()
+        myAnsBox.text = QuizApp.repository.getTopic(subject).questions[questionNum].answers[myAnswer] //this is a number, so later set it to an actual answer from the question objects
+        actualAnsBox.text = QuizApp.repository.getTopic(subject).questions[questionNum].answers[actualAnswer - 1]
 
-        if (myAnswer == QuizApp.offlineRepository.getTopic(subject).questions[questionNum].answer) {
+        if (myAnswer + 1 == actualAnswer) {
             score += 1
         }
 
@@ -51,6 +52,7 @@ class AnswerPage : Fragment() {
             } else {
                 val fragment = QuestionPage()
                 val bundle = Bundle()
+                bundle.putInt("subject", subject)
                 bundle.putInt("score", score)
                 bundle.putInt("totalQuestions", totalQuestions)
                 bundle.putInt("questionNum", questionNum + 1)

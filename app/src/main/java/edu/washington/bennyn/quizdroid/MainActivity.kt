@@ -25,12 +25,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
-        listView = findViewById(R.id.listView)
-        listView.adapter = customAdapter(this)
-        listView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(this, Quiz::class.java)
-            intent.putExtra("subject", position)
-            startActivity(intent)
+        if (!OnlineRepository().topics.isEmpty()) {
+            listView = findViewById(R.id.listView)
+            listView.adapter = customAdapter(this)
+            listView.setOnItemClickListener { parent, view, position, id ->
+                val intent = Intent(this, Quiz::class.java)
+                intent.putExtra("subject", position)
+                startActivity(intent)
+            }
         }
     }
 

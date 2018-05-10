@@ -1,11 +1,11 @@
 package edu.washington.bennyn.quizdroid
 
 import android.Manifest
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.os.Environment
+import android.os.PersistableBundle
 import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import org.json.JSONArray
 import org.json.JSONObject
@@ -20,6 +20,7 @@ class OnlineRepository(): TopicRepository {
 
     private fun retrieveJSON(): Array<TopicObj> {
         val topicsList = ArrayList<TopicObj>()
+        checkPermissions()
         val path = File(Environment.getExternalStorageDirectory().toString() + "/Download/questions.json")
         if (path.exists()) {
             Log.e("json status", "found!")
@@ -42,11 +43,9 @@ class OnlineRepository(): TopicRepository {
                     for (j in 0..answersList.length() - 1) {
                         answers.add(answersList[j].toString())
                     }
-
                     val questionObj = QuizObj(questionText, answers.toTypedArray(), answer)
                     questionList.add(questionObj)
                 }
-
                 val topicObj = TopicObj(topicName, desc, desc, questionList.toTypedArray())
                 topicsList.add(topicObj)
             }
@@ -54,5 +53,12 @@ class OnlineRepository(): TopicRepository {
             Log.e("file status", "not found!")
         }
         return topicsList.toTypedArray()
+    }
+
+    class checkPermissions: AppCompatActivity() {
+        override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+            super.onCreate(savedInstanceState, persistentState)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+        }
     }
 }

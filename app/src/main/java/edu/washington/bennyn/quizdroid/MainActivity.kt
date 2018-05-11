@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
-        if (!OnlineRepository().topics.isEmpty()) {
+        if (!OnlineRepository().topics.isEmpty()) { //if no questions file is present don't do anything
             listView = findViewById(R.id.listView)
             listView.adapter = customAdapter(this)
             listView.setOnItemClickListener { parent, view, position, id ->

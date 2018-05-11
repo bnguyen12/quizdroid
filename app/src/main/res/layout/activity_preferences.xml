@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal">
+
         <EditText
             android:id="@+id/urlInput"
             android:layout_width="wrap_content"
@@ -33,11 +34,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:ems="10"
+            android:gravity="center"
             android:hint="URL:"
             android:inputType="text"
-            tools:layout_editor_absoluteY="90dp"
-            android:gravity="center"
-            />
+            android:text="http://tednewardsandbox.site44.com/questions.json"
+            tools:layout_editor_absoluteY="90dp" />
         <Button
             android:id="@+id/urlSubmitButton"
             android:layout_width="fill_parent"

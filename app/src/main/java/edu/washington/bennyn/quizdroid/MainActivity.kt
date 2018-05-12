@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Returns whether or not airplane mode is on
     private fun isAirplaneModeOn(context: Context): Boolean {
         return Settings.System.getInt(context.contentResolver,
                 Settings.Global.AIRPLANE_MODE_ON, 0) != 0
-
     }
 
     // Returns whether or not the phone is connected to internet
